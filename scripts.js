@@ -1,3 +1,29 @@
+const selectors = {
+  moves: document.querySelector('.moves'),
+  timer: document.querySelector('.timer'),
+  start: document.querySelector('button'),
+}
+
+const state = {
+  gameStarted: false,
+  flippedCards: 0,
+  totalFlips: 0,
+  totalTime: 0,
+  loop: null
+}
+
+const startGame = () => {
+  state.gameStarted = true
+  selectors.start.classList.add('disabled')
+
+  state.loop = setInterval(() => {
+      state.totalTime++
+
+      selectors.moves.innerText = `${state.totalFlips} moves`
+      selectors.timer.innerText = `time: ${state.totalTime} sec`
+  }, 1000)
+}
+
 const cards = document.querySelectorAll('.cards');
 
 let flippedCard = false;
@@ -58,3 +84,7 @@ function resetBoard() {
 })();
 
 cards.forEach(card => card.addEventListener('click', flipCard));
+
+
+
+
