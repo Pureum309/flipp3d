@@ -18,6 +18,36 @@
     flex-wrap: wrap;
     perspective: 1000px;
   }
+
+  button {
+    cursor: pointer;
+}
+
+.disabled {
+    color: #757575;
+}
+
+button {
+  background: #282A3A;
+  color: #FFF;
+  border-radius: 5px;
+  padding: 10px 20px;
+  border: 0;
+  cursor: pointer;
+  font-family: Fredoka;
+  font-size: 18pt;
+}
+
+.disabled {
+  color: #757575;
+}
+
+.stats {
+  color: #FFF;
+  font-size: 14pt;
+}
+
+
   
   .cards {
     width: calc(25% - 10px);
@@ -39,7 +69,7 @@
   .cards.flip {
     transform: rotateY(180deg);
   }
-  
+
   .front-face,
   .back-face {
     width: 100%;
