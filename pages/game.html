@@ -12,14 +12,15 @@
 <body>
   <div class="game">
     <div class="controls">
-        <button>Start</button>
+        <button class="startBtn" onclick="startGame()">Start</button>
+        <button class="nextBtn disabled" onclick="startGame()">Next</button>
         <div class="stats">
             <div class="moves">0 moves</div>
             <div class="timer">time: 0 sec</div>
         </div>
         
-  <section class="game">
-    <div class="cards" data-framework="card1">
+  <section class="game" id="board">
+    <!-- <div class="cards" data-framework="card1">
         <img class="front-face" src="/img/dragonfruit.png" alt="card 1" />
         <img class="back-face" src="img/cardback.png" alt="Card Back" />
     </div>
@@ -71,7 +72,7 @@
       <div class="cards" data-framework="card6">
         <img class="front-face" src="img/hamster.png" alt="card 6" />
         <img class="back-face" src="img/cardback.png" alt="Card Back" />
-      </div>
+      </div> -->
   </section>
 
   <script src="scripts.js"></script>
