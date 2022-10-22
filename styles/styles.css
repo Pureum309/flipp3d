@@ -19,6 +19,12 @@
     perspective: 1000px;
   }
 
+  #logo{ 
+    position:fixed; 
+    top:0; 
+    left:0; 
+  } 
+
   button {
     cursor: pointer;
 }
