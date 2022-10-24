@@ -6,13 +6,14 @@
   
   body {
     height: 100vh;
+    padding-top: 2em;
     display: flex;
     background: #8ADFE3;
   }
   
   .game {
-    width: 640px;
-    height: 640px;
+    width: 540px;
+    height: 540px;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
@@ -20,9 +21,14 @@
   }
 
   #logo{ 
-    position:fixed; 
-    top:0; 
-    left:0; 
+    flex: 1;
+    z-index: 1;
+    position: absolute; 
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* Centering y-axis */
+    align-items :center; /* Centering x-axis */
   } 
 
   button {
@@ -30,12 +36,13 @@
 }
 
 .disabled {
-    color: #757575;
+    color: #394c53;
 }
 
 button {
-  background: #282A3A;
+  background: #fcd664;
   color: #FFF;
+  font-weight: 700;
   border-radius: 5px;
   padding: 10px 20px;
   border: 0;
@@ -51,6 +58,8 @@ button {
 .stats {
   color: #FFF;
   font-size: 14pt;
+  padding-top: 0.5em;
+  padding-bottom: 2em;
 }
 
 
