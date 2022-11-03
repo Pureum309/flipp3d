@@ -10,6 +10,7 @@ const indexPath = __dirname + '/pages/index.html'
 //directory to login page
 const LoginPath = __dirname + '/pages/login.html'
 const GamePath = __dirname + '/pages/game.html'
+const LeaderPath = __dirname + '/pages/leaderboard.html'
 
 // load images and css files
 app.use(express.static(__dirname))
@@ -38,6 +39,10 @@ app.get('/login', (req,res)=>{
 
 app.get('/gamepage', (req,res)=>{
     res.sendFile(GamePath)
+})
+
+app.get('/leaderboard', (req,res)=>{
+    res.sendFile(LeaderPath)
 })
 
 app.post('/gamepage', (req, res)=>{

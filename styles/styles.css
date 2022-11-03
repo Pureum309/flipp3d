@@ -20,6 +20,51 @@
     perspective: 1000px;
   }
 
+  #leader {
+    display:flex;
+    flex-direction:column;
+  }
+
+  .leaderboard {
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20%;
+  }
+
+  .leader_table {
+    font-family: 'Fredoka One';
+    border-collapse: collapse;
+    width: 60%;
+    margin-top: 15px;
+  }
+
+  .leader_table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #fcd664;
+    color: rgb(67, 61, 61);
+  }
+  .leader_table tr:nth-child(even){
+    background-color: #f2f2f2;
+  }
+
+  .leader_table tr:nth-child(odd){
+    background-color: #dc9d9d;
+  }
+
+  h2 {
+    font-family: 'Fredoka One';
+    font-size: 18pt;
+  }
+
+  .leader_table td, .leader_table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
   #logo{ 
     flex: 1;
     z-index: 1;
