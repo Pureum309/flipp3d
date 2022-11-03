@@ -48,12 +48,20 @@ app.post('/gamepage', (req, res)=>{
             if(foundUser.password === userData.password){
             res.sendFile(GamePath)
             } else {
-                res.end("Username or password incorrect")
+                res.sendFile(LoginPath)
             }
         } else{
             res.end("User Not Found")
         }
     })
+
+app.post('/signup', (req, res)=>{
+    const newuserData = req.body
+    // console.log(newuserData)
+    users.push(newuserData)
+    res.sendFile(LoginPath)
+    console.log(users)
+})
 
 app.listen(port, () => {
     console.log(`server listening on port ${port}`)
