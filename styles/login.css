@@ -35,3 +35,7 @@ border-top-right-radius: 0;
 .btnlogin {
     background-color: #f3766e;
 }
+
+.btnlogin:hover {
+    background-color: #ec928c;
+}
