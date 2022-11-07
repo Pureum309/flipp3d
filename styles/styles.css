@@ -151,3 +151,15 @@ button {
     border: none;
     border-radius: 10px;
   }
+
+  .btnLeader {
+    background: #F79C65;
+    color: #FFF;
+    font-weight: 700;
+    border-radius: 5px;
+    padding: 10px 20px;
+    border: 0;
+    cursor: pointer;
+    font-family: Fredoka;
+    font-size: 18pt;
+  }
