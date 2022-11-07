@@ -1,10 +1,12 @@
 const express = require('express')
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('./db')
+var path = require('path')
 
 
 //creates table only if it doesn't exist
 db.run('CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY AUTOINCREMENT, user_name varchar(15), password varchar(15) )')
+db.run('CREATE TABLE IF NOT EXISTS scores(id INTEGER PRIMARY KEY AUTOINCREMENT, user_name varchar(15), score integer )')
 
 const app = express()
 
@@ -16,18 +18,27 @@ const indexPath = __dirname + '/pages/index.html'
 //directory to login page
 const LoginPath = __dirname + '/pages/login.html'
 const GamePath = __dirname + '/pages/game.html'
+const LeaderPath = __dirname + '/pages/leaderboard.html'
 
 // load images and css files
 app.use(express.static(__dirname))
+
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'hbs')
 
 //console logs current users row
 db.each("SELECT * FROM users", (err, row) => {
     console.log(row);
 });
 
+//console logs current scores row
+db.each("SELECT * FROM scores", (err, row) => {
+    console.log(row);
+});
+
 //encodes form data
 app.use(express.urlencoded({
-    extended: false
+    extended: true
   }))
 
 app.get('/', (req,res)=>{
@@ -42,26 +53,44 @@ app.get('/gamepage', (req,res)=>{
     res.sendFile(GamePath)
 })
 
-app.post('/gamepage', (req, res)=>{
-        const userData = req.body
-        console.log(userData)
-        foundUsers = []
-        
-        db.all("SELECT * FROM users WHERE user_name = ?", [userData.username], (err, foundUser) => {
-            // console.log('---');
-            // console.log(row); 
-            foundUsers.push(foundUser)
-            console.log('----')
-            console.log(foundUsers[0][0].password)
-        });
+var leaderboardRoute = require('./pages/leaderboard')
+app.use('/leaderboard', leaderboardRoute)
 
-        if(foundUsers){
-            if(foundUsers[0][0].password === userData.password) {
-                res.sendFile(GamePath)
-            } else {
-                res.send('invalid log in')
-            }
-        }
+// app.get('/leaderboard', (req,res)=>{
+//     db.each("SELECT * FROM scores", (err, row) => {
+//         console.log(row);
+//     });
+    
+//     res.sendFile(LeaderPath, {test: "test text"})
+// })
+
+app.post('/gamepage', (req, res)=>{
+    const userName = req.body.userName;
+    const score = req.body.score;
+
+    db.run(`INSERT INTO scores(user_name, score) values (?,?)`, [userName, score]);
+
+    res.redirect('/leaderboard');
+
+        // const userData = req.body
+        // console.log(userData)
+        // foundUsers = []
+        
+        // db.all("SELECT * FROM users WHERE user_name = ?", [userData.username], (err, foundUser) => {
+        //     // console.log('---');
+        //     // console.log(row); 
+        //     foundUsers.push(foundUser)
+        //     console.log('----')
+        //     console.log(foundUsers[0][0].password)
+        // });
+
+        // if(foundUsers){
+        //     if(foundUsers[0][0].password === userData.password) {
+        //         res.sendFile(GamePath)
+        //     } else {
+        //         res.send('invalid log in')
+        //     }
+        // }
 
         // if(foundUser){
         //     if(foundUser.password === userData.password){

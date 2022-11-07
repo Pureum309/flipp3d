@@ -1,20 +1,30 @@
 const images = [
   'dragonfruit.png', 
-  'durian.png', 
+  'durian.png',
+  'hamster.png', 
   'mango.png', 
   'octopus.png', 
   'orange.png', 
   'passionfruit.png', 
   'penguin.png', 
   'pig.png', 
-  'puppy.png'];
+  'puppy.png',
+];
+
+const levels = [60, 60, 120, 120, 120, 180, 180, 180, 180];
 
 const selectors = {
   moves: document.querySelector('.moves'),
   timer: document.querySelector('.timer'),
+  curScore: document.querySelector('.score'),
   start: document.querySelector('.startBtn'),
   next: document.querySelector('.nextBtn'),
-  board: document.getElementById('board')
+  board: document.getElementById('board'),
+  scoreForm: document.querySelector('.scoreForm'),
+  totalScore: document.querySelector('.totalScore'),
+  name: document.querySelector('[name="userName"]'),
+  score: document.querySelector('[name="score"]'),
+  leaderboard: document.querySelector('.leader_table')
 }
 
 var cards = document.querySelectorAll('.cards')
@@ -28,6 +38,7 @@ const state = {
   curLevel: 1,
   curTotalNumCards: 0,
   curNumMatches: 0,
+  curScore: 0,
 }
 
 const startGame = () => {
@@ -49,8 +60,13 @@ const startGame = () => {
 }
 
 function timeTick() {
-  state.totalTime++;
+  state.totalTime--;
   selectors.timer.innerText = `time: ${state.totalTime} sec`;
+
+  if (state.totalTime <= 0) {
+    clearInterval(state.loop);
+    Gameover();
+  }
 }
 
 let flippedCard = false;
@@ -61,7 +77,7 @@ function initGame() {
   state.gameStarted = true;
   state.flippedCards = 0;
   state.totalFlips = 0;
-  state.totalTime = 0;
+  state.totalTime = levels[state.curLevel - 1];
   state.curTotalNumCards = 0;
   state.curNumMatches = 0;
 
@@ -179,8 +195,60 @@ function addListener() {
 
 function goToNextLevel() {
   clearInterval(state.loop);
+  state.curScore += state.curLevel * state.totalTime;
   state.curLevel++;
+  selectors.curScore.innerText = `score: ${state.curScore}`;
   selectors.next.classList.remove('disabled');
+}
+
+function Gameover() {
+  selectors.start.classList.add('disabled');
+  selectors.next.classList.add('disabled');
+
+  selectors.totalScore.style.display = 'block';
+  selectors.totalScore.innerText = state.curScore;
+
+  selectors.scoreForm.style.display = 'block';
+  selectors.score.value = state.curScore;
+
+  resetBoard();
+
+  state.gameStarted = false;
+  state.flippedCards = 0;
+  state.totalFlips  = 0;
+  state.totalTime = 0;
+  state.loop = null;
+  state.curLevel = 1;
+  state.curTotalNumCards = 0;
+  state.curNumMatches = 0;
+  state.curScore = 0;
+
+  // window.location.href = "http://localhost:3000/leaderboard/"
+}
+
+function loadLeaderboard() {
+  console.log(scores);
+  // let curHtml = `<tr>
+  //     <th>Rank</th>
+  //     <th>User</th>
+  //     <th>Score</th>
+  //   </tr>`;
+
+  // db.each("SELECT * FROM scores ORDER BY score DESC", (err, row) => {
+  //   curHtml += `<tr>
+  //       <td>${i + 1}</td>
+  //       <td>${row.name}</td>
+  //       <td>${row.score}</td>
+  //   </tr>`;
+  // });
+  // for (let i = 0; i < scores.length; i++) {
+  //   curHtml += `<tr>
+  //       <td>${i + 1}</td>
+  //       <td>${scores[i].name}</td>
+  //       <td>${scores[i].score}</td>
+  //   </tr>`;
+  // }
+  // selectors.leaderboard.innerHTML = curHtml;
 }
 
 
