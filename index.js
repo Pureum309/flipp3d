@@ -1,4 +1,10 @@
 const express = require('express')
+const sqlite3 = require('sqlite3').verbose();
+const db = new sqlite3.Database('./db')
+
+
+//creates table only if it doesn't exist
+db.run('CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY AUTOINCREMENT, user_name varchar(15), password varchar(15) )')
 
 const app = express()
 
@@ -10,18 +16,15 @@ const indexPath = __dirname + '/pages/index.html'
 //directory to login page
 const LoginPath = __dirname + '/pages/login.html'
 const GamePath = __dirname + '/pages/game.html'
+const LeaderPath = __dirname + '/pages/leaderboard.html'
 
 // load images and css files
 app.use(express.static(__dirname))
 
-//stores users
-const users = [
-    {
-        username: "Can",
-        password: "1234!"
-    }
-]
-console.log(users)
+//console logs current users row
+db.each("SELECT * FROM users", (err, row) => {
+    console.log(row);
+});
 
 //encodes form data
 app.use(express.urlencoded({
@@ -40,20 +43,62 @@ app.get('/gamepage', (req,res)=>{
     res.sendFile(GamePath)
 })
 
+app.get('/leaderboard', (req,res)=>{
+    res.sendFile(LeaderPath)
+})
+
 app.post('/gamepage', (req, res)=>{
         const userData = req.body
         console.log(userData)
-        const foundUser = users.find(person => person.username == userData.username)
-        if(foundUser){
-            if(foundUser.password === userData.password){
-            res.sendFile(GamePath)
+        foundUsers = []
+        
+        db.all("SELECT * FROM users WHERE user_name = ?", [userData.username], (err, foundUser) => {
+            // console.log('---');
+            // console.log(row); 
+            foundUsers.push(foundUser)
+            console.log('----')
+            console.log(foundUsers[0][0].password)
+        });
+
+        if(foundUsers){
+            if(foundUsers[0][0].password === userData.password) {
+                res.sendFile(GamePath)
             } else {
-                res.end("Username or password incorrect")
+                res.send('invalid log in')
             }
-        } else{
-            res.end("User Not Found")
         }
+
+        // if(foundUser){
+        //     if(foundUser.password === userData.password){
+        //     res.sendFile(GamePath)
+        //     } else {
+        //         res.sendFile(LoginPath)
+        //     }
+        // } else{
+            res.end()
+        // }
     })
+
+app.post('/signup', (req, res)=>{
+    // const newuserData = req.body
+    // // console.log(newuserData)
+    // users.push(newuserData)
+    // res.sendFile(LoginPath)
+    // console.log(users)
+    const username = req.body.username
+    const password = req.body.password
+    
+    // Adds new user. ? is a placeholder, if data exists run name and age array. Array values must match the placement
+    db.run(`INSERT INTO users (user_name, password) values (?,?)`, [username, password])
+    
+    // Shows the table
+    db.each("SELECT * FROM users", (err, row) => {
+        console.log(row);
+});
+
+    res.sendFile(LoginPath)
+
+})
 
 app.listen(port, () => {
     console.log(`server listening on port ${port}`)
