@@ -27,6 +27,7 @@
         <div class="stats">
             <div class="moves">0 moves</div>
             <div class="timer">time: 0 sec</div>
+            <div class="score">score: 0</div>
         </div>
         
   <section class="game" id="board">
@@ -84,6 +85,13 @@
         <img class="back-face" src="img/cardback.png" alt="Card Back" />
       </div> -->
   </section>
+  <h3 class="totalScore" hidden></h3>
+  <form class="scoreForm" action="/gamepage" method="post" enctype="application/x-www-form-urlencoded" hidden>
+    <label for="userName">Enter Your Name: </label><input type="text" name="userName" />
+    <input type="text" name="score" value="test" />
+    <input type="submit" value="Go To Leaderboard" class="w-100 btn btn-lg btnlogin mb-3">
+  </form>
+  <br />
 
   <script src="scripts.js"></script>
 
