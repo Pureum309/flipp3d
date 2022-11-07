@@ -11,7 +11,7 @@ const images = [
   'puppy.png',
 ];
 
-const levels = [60, 60, 120, 120, 120, 180, 180, 180, 180];
+const levels = [5, 60, 120, 120, 120, 180, 180, 180, 180];
 
 const selectors = {
   moves: document.querySelector('.moves'),

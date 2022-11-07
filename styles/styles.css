@@ -144,3 +144,9 @@ button {
   .front-face {
     transform: rotateY(180deg);
   }
+
+  .leaderStyle {
+    padding: 1em;
+    border: none;
+    border-radius: 10px;
+  }
