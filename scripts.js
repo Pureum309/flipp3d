@@ -1,13 +1,15 @@
 const images = [
   'dragonfruit.png', 
-  'durian.png', 
+  'durian.png',
+  'hamster.png', 
   'mango.png', 
   'octopus.png', 
   'orange.png', 
   'passionfruit.png', 
   'penguin.png', 
   'pig.png', 
-  'puppy.png'];
+  'puppy.png',
+];
 
 const selectors = {
   moves: document.querySelector('.moves'),
