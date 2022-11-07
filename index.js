@@ -1,6 +1,7 @@
 const express = require('express')
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('./db')
+var path = require('path')
 
 
 //creates table only if it doesn't exist
@@ -22,6 +23,9 @@ const LeaderPath = __dirname + '/pages/leaderboard.html'
 // load images and css files
 app.use(express.static(__dirname))
 
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'hbs')
+
 //console logs current users row
 db.each("SELECT * FROM users", (err, row) => {
     console.log(row);
@@ -34,7 +38,7 @@ db.each("SELECT * FROM scores", (err, row) => {
 
 //encodes form data
 app.use(express.urlencoded({
-    extended: false
+    extended: true
   }))
 
 app.get('/', (req,res)=>{
@@ -49,13 +53,16 @@ app.get('/gamepage', (req,res)=>{
     res.sendFile(GamePath)
 })
 
-app.get('/leaderboard', (req,res)=>{
-    db.each("SELECT * FROM scores", (err, row) => {
-        console.log(row);
-    });
+var leaderboardRoute = require('./pages/leaderboard')
+app.use('/leaderboard', leaderboardRoute)
+
+// app.get('/leaderboard', (req,res)=>{
+//     db.each("SELECT * FROM scores", (err, row) => {
+//         console.log(row);
+//     });
     
-    res.sendFile(LeaderPath, {test: "test text"})
-})
+//     res.sendFile(LeaderPath, {test: "test text"})
+// })
 
 app.post('/gamepage', (req, res)=>{
     const userName = req.body.userName;

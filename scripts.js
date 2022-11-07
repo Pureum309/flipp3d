@@ -11,13 +11,12 @@ const images = [
   'puppy.png',
 ];
 
-// const levels = [60, 60, 120, 120, 120, 180, 180, 180, 180];
-const levels = [2, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5];
+const levels = [60, 60, 120, 120, 120, 180, 180, 180, 180];
 
 const selectors = {
   moves: document.querySelector('.moves'),
   timer: document.querySelector('.timer'),
-  score: document.querySelector('.score'),
+  curScore: document.querySelector('.score'),
   start: document.querySelector('.startBtn'),
   next: document.querySelector('.nextBtn'),
   board: document.getElementById('board'),
@@ -198,19 +197,19 @@ function goToNextLevel() {
   clearInterval(state.loop);
   state.curScore += state.curLevel * state.totalTime;
   state.curLevel++;
-  selectors.score.innerText = `score: ${state.curScore} sec`;
+  selectors.curScore.innerText = `score: ${state.curScore}`;
   selectors.next.classList.remove('disabled');
 }
 
 function Gameover() {
-  console.log("gameover!");
+  selectors.start.classList.add('disabled');
+  selectors.next.classList.add('disabled');
 
   selectors.totalScore.style.display = 'block';
   selectors.totalScore.innerText = state.curScore;
 
   selectors.scoreForm.style.display = 'block';
   selectors.score.value = state.curScore;
-  // selectors.score.style.visibility = 'hide';
 
   resetBoard();
 
@@ -228,7 +227,6 @@ function Gameover() {
 }
 
 function loadLeaderboard() {
-  var scores = "<%= test %>";
   console.log(scores);
   // let curHtml = `<tr>
   //     <th>Rank</th>
