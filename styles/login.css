@@ -16,8 +16,19 @@ h1 {
     font-weight: 900;
 }
 
+.button {
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    align-content: center;
+}
+
+.quickstart, .login, .aboutus {
+    margin:4px;
+}
+
 .form-signin {
-max-width: 330px;
+max-width: 60%;
 padding: 15px;
 }
 
