@@ -1,92 +1,159 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    height: 100vh;
-    padding-top: 2em;
-    display: flex;
-    background: #8ADFE3;
-  }
-  
-  .game {
-    width: 540px;
-    height: 540px;
-    margin: auto;
-    display: flex;
-    flex-wrap: wrap;
-    perspective: 1000px;
-    margin-top: 20%
-  }
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 
-  #leader {
-    display:flex;
-    flex-direction:column;
-  }
+body {
+  height: 100vh;
+  padding-top: 2em;
+  display: flex;
+  background: #8ADFE3;
+}
 
-  .leaderboard {
-    display:flex;
-    flex-direction:column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20%;
-  }
+.game {
+  width: 540px;
+  height: 540px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  perspective: 1000px;
+  margin-top: 20%
+}
 
-  .leader_table {
-    font-family: 'Fredoka One';
-    border-collapse: collapse;
-    width: 60%;
-    margin-top: 15px;
-  }
+#leader {
+  display:flex;
+  flex-direction:column;
+}
 
-  .leader_table th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #fcd664;
-    color: rgb(67, 61, 61);
-  }
-  .leader_table tr:nth-child(even){
-    background-color: #f2f2f2;
-  }
+.leaderboard {
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20%;
+}
 
-  .leader_table tr:nth-child(odd){
-    background-color: #dc9d9d;
-  }
+.leader_table {
+  font-family: 'Fredoka One';
+  border-collapse: collapse;
+  width: 60%;
+  margin-top: 15px;
+}
 
-  h2 {
-    font-family: 'Fredoka One';
-    font-size: 18pt;
-  }
+.leader_table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #fcd664;
+  color: rgb(67, 61, 61);
+}
+.leader_table tr:nth-child(even){
+  background-color: #f2f2f2;
+}
 
-  .leader_table td, .leader_table th {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
+.leader_table tr:nth-child(odd){
+  background-color: #dc9d9d;
+}
 
-  #logo{ 
-    flex: 1;
-    z-index: 1;
-    position: absolute; 
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;  /* Centering y-axis */
-    align-items :center; /* Centering x-axis */
-  } 
+h2 {
+  font-family: 'Fredoka One';
+  font-size: 18pt;
+}
 
-  button {
-    cursor: pointer;
+.leader_table td, .leader_table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#logo{ 
+  flex: 1;
+  z-index: 1;
+  position: absolute; 
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* Centering y-axis */
+  align-items :center; /* Centering x-axis */
+} 
+
+button {
+  cursor: pointer;
 }
 
 .disabled {
-    color: #394c53;
+  color: #394c53;
 }
 
 button {
-  background: #fcd664;
+background: #fcd664;
+color: #FFF;
+font-weight: 700;
+border-radius: 5px;
+padding: 10px 20px;
+border: 0;
+cursor: pointer;
+font-family: Fredoka;
+font-size: 18pt;
+}
+
+.disabled {
+color: #757575;
+}
+
+.stats {
+color: #FFF;
+font-size: 14pt;
+padding-top: 0.5em;
+padding-bottom: 2em;
+}
+
+
+
+.cards {
+  width: calc(25% - 10px);
+  height: calc(33.333% - 10px);
+  margin: 5px;
+  position: relative;
+  transform: scale(1);
+  transform-style: preserve-3d;
+  transition: transform .5s;
+  box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+  border-radius: 8px;
+}
+
+.cards:active {
+  transform: scale(0.97);
+  transition: transform .2s;
+}
+
+.cards.flip {
+  transform: rotateY(180deg);
+}
+
+.front-face,
+.back-face {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  position: absolute;
+  border-radius: 8px;
+  background: #F79C65;
+  backface-visibility: hidden;
+}
+
+.front-face {
+  transform: rotateY(180deg);
+}
+
+.leaderStyle {
+  padding: 1em;
+  border: none;
+  border-radius: 10px;
+}
+
+.btnLeader {
+  background: #F79C65;
   color: #FFF;
   font-weight: 700;
   border-radius: 5px;
@@ -96,70 +163,3 @@ button {
   font-family: Fredoka;
   font-size: 18pt;
 }
-
-.disabled {
-  color: #757575;
-}
-
-.stats {
-  color: #FFF;
-  font-size: 14pt;
-  padding-top: 0.5em;
-  padding-bottom: 2em;
-}
-
-
-  
-  .cards {
-    width: calc(25% - 10px);
-    height: calc(33.333% - 10px);
-    margin: 5px;
-    position: relative;
-    transform: scale(1);
-    transform-style: preserve-3d;
-    transition: transform .5s;
-    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
-    border-radius: 8px;
-  }
-  
-  .cards:active {
-    transform: scale(0.97);
-    transition: transform .2s;
-  }
-  
-  .cards.flip {
-    transform: rotateY(180deg);
-  }
-
-  .front-face,
-  .back-face {
-    width: 100%;
-    height: 100%;
-    padding: 10px;
-    position: absolute;
-    border-radius: 8px;
-    background: #F79C65;
-    backface-visibility: hidden;
-  }
-  
-  .front-face {
-    transform: rotateY(180deg);
-  }
-
-  .leaderStyle {
-    padding: 1em;
-    border: none;
-    border-radius: 10px;
-  }
-
-  .btnLeader {
-    background: #F79C65;
-    color: #FFF;
-    font-weight: 700;
-    border-radius: 5px;
-    padding: 10px 20px;
-    border: 0;
-    cursor: pointer;
-    font-family: Fredoka;
-    font-size: 18pt;
-  }
