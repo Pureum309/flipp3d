@@ -1,6 +1,7 @@
 html,
 body {
 height: 100%;
+font-family: "Comfortaa"
 }
 
 body {
@@ -9,6 +10,10 @@ align-items: center;
 padding-top: 40px;
 padding-bottom: 40px;
 background-color: #f6d7de;
+}
+
+h1 {
+    font-weight: 900;
 }
 
 .form-signin {
@@ -24,6 +29,7 @@ z-index: 2;
 margin-bottom: -1px;
 border-bottom-right-radius: 0;
 border-bottom-left-radius: 0;
+font-family: "Comfortaa"
 }
 
 .form-signin input[type="password"] {
@@ -34,6 +40,8 @@ border-top-right-radius: 0;
 
 .btnlogin {
     background-color: #f3766e;
+    font-family:"Comfortaa";
+    font-weight: 200;
 }
 
 .btnlogin:hover {
