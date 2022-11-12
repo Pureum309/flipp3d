@@ -1,6 +1,7 @@
 html,
 body {
 height: 100%;
+font-family: "Comfortaa"
 }
 
 body {
@@ -11,8 +12,23 @@ padding-bottom: 40px;
 background-color: #f6d7de;
 }
 
+h1 {
+    font-weight: 900;
+}
+
+.button {
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    align-content: center;
+}
+
+.quickstart, .login, .aboutus {
+    margin:4px;
+}
+
 .form-signin {
-max-width: 330px;
+max-width: 60%;
 padding: 15px;
 }
 
@@ -24,6 +40,7 @@ z-index: 2;
 margin-bottom: -1px;
 border-bottom-right-radius: 0;
 border-bottom-left-radius: 0;
+font-family: "Comfortaa"
 }
 
 .form-signin input[type="password"] {
@@ -34,6 +51,8 @@ border-top-right-radius: 0;
 
 .btnlogin {
     background-color: #f3766e;
+    font-family:"Comfortaa";
+    font-weight: 200;
 }
 
 .btnlogin:hover {

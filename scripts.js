@@ -61,7 +61,7 @@ const startGame = () => {
 
 function timeTick() {
   state.totalTime--;
-  selectors.timer.innerText = `time: ${state.totalTime} sec`;
+  selectors.timer.innerText = `Time: ${state.totalTime} sec`;
 
   if (state.totalTime <= 0) {
     clearInterval(state.loop);
@@ -112,7 +112,7 @@ function flipCard() {
   if (this === firstCard) return;
 
   state.totalFlips++;
-  selectors.moves.innerText = `${state.totalFlips} moves`
+  selectors.moves.innerText = `Moves: ${state.totalFlips}`
 
   this.classList.add('flip');
 
@@ -197,7 +197,7 @@ function goToNextLevel() {
   clearInterval(state.loop);
   state.curScore += state.curLevel * state.totalTime;
   state.curLevel++;
-  selectors.curScore.innerText = `score: ${state.curScore}`;
+  selectors.curScore.innerText = `Score: ${state.curScore}`;
   selectors.next.classList.remove('disabled');
 }
 
