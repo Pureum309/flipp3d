@@ -20,6 +20,10 @@ const LoginPath = __dirname + '/pages/login.html'
 const GamePath = __dirname + '/pages/game.html'
 const LeaderPath = __dirname + '/pages/leaderboard.html'
 
+//Directory to about page
+
+const AboutUsPath = __dirname + '/pages/aboutus.html'
+
 // load images and css files
 app.use(express.static(__dirname))
 
@@ -51,6 +55,10 @@ app.get('/login', (req,res)=>{
 
 app.get('/gamepage', (req,res)=>{
     res.sendFile(GamePath)
+})
+
+app.get('/aboutus', (req, res) => {
+    res.sendFile(AboutUsPath)
 })
 
 var leaderboardRoute = require('./pages/leaderboard')
