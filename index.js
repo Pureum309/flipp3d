@@ -72,47 +72,37 @@ app.use('/leaderboard', leaderboardRoute)
 //     res.sendFile(LeaderPath, {test: "test text"})
 // })
 
-app.get('/gamepage', (req, res)=>{
-   
-        const userData = req.body
-        console.log(userData)
-        foundUsers = []
-        
-        db.all("SELECT * FROM users WHERE user_name = ?", [userData.username], (err, foundUser) => {
-            // console.log('---');
-            // console.log(row); 
-            foundUsers.push(foundUser)
-            console.log('----')
-            console.log(foundUsers.length +'+'+ userData.password)
-            if (foundUser){
-                for (i = 0; i < foundUsers.length; i++){
-                    for (j = 0; j < foundUsers[i].length; j++){
-                        if(foundUsers[i][j].password === userData.password) {
-                            console.log('++++++')
-                        }
-                    }
-                }
-            }
-        });
+app.post('/auth', (req, res)=>{
 
-        // if(foundUsers){
-        //     if(foundUsers[0][0].password === userData.password) {
-        //         res.sendFile(GamePath)
-        //     } else {
-        //         res.send('invalid log in')
-        //     }
-        // }
+    const username = req.body.username;
+	const password = req.body.password;
+    const GamePath = __dirname + '/pages/game.html'
 
-        // if(foundUser){
-        //     if(foundUser.password === userData.password){
-        //     res.sendFile(GamePath)
-        //     } else {
-        //         res.sendFile(LoginPath)
-        //     }
-        // } else{
-            res.end()
-        // }
-    })
+
+    if (username && password) {
+        if (username && password) {
+            // Execute SQLite query that'll select the user from the database based on the specified username and password
+            db.all('SELECT * FROM users WHERE user_name = ? AND password = ?', [username, password], function(error, results, fields) {
+                // If there is an issue with the query, output the error
+                if (error) throw error;
+                // If the account exists
+                if (results.length > 0) {
+                    res.redirect('/gamepage')
+                } else {
+                    res.send('Incorrect Username and/or Password!');
+                }			
+                res.end();
+            });
+        } else {
+            res.send('Please enter Username and Password!');
+            res.end();
+        }
+    }
+})
+
+app.get('/gamepage', function(req, res) {
+		res.sendFile(GamePath)
+});
 
 
 app.post('/leaderboard', (req, res)=>{
