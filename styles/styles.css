@@ -17,7 +17,10 @@ body {
   justify-content: center
 }
 
-
+.totalScore {
+  margin:10px;
+  font-size: 20px;
+}
 
 .game {
   width: 540px;

@@ -206,7 +206,7 @@ function Gameover() {
   selectors.next.classList.add('disabled');
 
   selectors.totalScore.style.display = 'block';
-  selectors.totalScore.innerText = state.curScore;
+  selectors.totalScore.innerText = `Total Score: ${state.curScore}`;
 
   selectors.scoreForm.style.display = 'block';
   selectors.score.value = state.curScore;
