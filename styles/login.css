@@ -27,6 +27,9 @@ h1 {
     flex-direction:column;
     justify-content: center;
     align-content: center;
+    text-align: center;
+    width: 20em;
+    margin: 0 auto;
 }
 
 .quickstart, .login, .tutorial, .aboutus {
