@@ -87,7 +87,7 @@ body {
 }
 
 .leader_table tr:nth-child(odd){
-  background-color: #dc9d9d;
+  background-color: #f3766e;
 }
 
 h2 {
@@ -121,8 +121,8 @@ button {
 
 button {
 background: #fcd664;
-color: #757575;
-font-weight: 700;
+color: #5c480c;
+font-weight: 900;
 border-radius: 5px;
 padding: 10px 20px;
 border: 0;
@@ -241,9 +241,14 @@ audio {
   align-items :center; /* Centering x-axis */
 }
 
-h1 {
+h1, h2 {
+  padding: 0.5em;
   font-family: 'Pacifico', cursive;
   color: #ffff;
   text-shadow: 0.1em 0.1em 0 #139dd3, 0 0 0.5em #ffff;
   /* text-shadow: 1px 1px 0 rgba(140,140,140,0.6) , -1px -1px 1px rgba(0,0,0,0.67) ; */
+}
+
+form {
+  color: #ffff;
 }

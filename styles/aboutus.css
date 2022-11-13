@@ -7,12 +7,32 @@ html {
   box-sizing: inherit;
 }
 
+#logo {
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  margin: 2em;
+  width: 100%;
+}
+
+h1 {
+  font-family: "Pacifico";
+  color: #2dc0ce;
+  text-shadow: 
+  2px 2px 0px #ffffff, 
+  5px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
 h2{
-  font-family: "Pacifico"
+  font-family: "Pacifico";
+  color: #f3766e;
+  
 }
 
 body {
-  background: #f6d7de;
+  background: #ffe189;
 }
 
 .column {
@@ -32,7 +52,9 @@ body {
 .card {
   box-shadow: 0 4px 8px 0 rgba(111, 44, 83, 0.2);
   border-radius: 25px;
-  border: 5px solid #cd664d;
+  border: 5px solid #139dd3;
+  background-color: #ffffff;
+  height: 36em;
 
 }
 
@@ -51,3 +73,29 @@ body {
   font-family: "Comfortaa"
 }
 
+.row {
+  margin: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: center;
+  align-content: center;
+}
+
+.sarah {
+  color: #2dc0ce;
+}
+
+.can {
+  color: #8dc63f;
+}
+
+.kc {
+  color: #964796;
+}
+
+.heidi {
+  color: #8b5e3c;
+}

@@ -13,18 +13,34 @@ background-color: #f6d7de;
 }
 
 h1 {
+    font-family: 'Pacifico', cursive;
     font-weight: 900;
+    color: #2dc0ce;
+  /* text-shadow: 0.1em 0.1em 0 #012939, 0 0 0.5em #ffff; */
+    text-shadow: 
+    2px 2px 0px #ffffff, 
+    5px 5px 0px rgba(0, 0, 0, 0.1);
 }
 
 .button {
     display:flex;
-    flex-direction:row;
+    flex-direction:column;
     justify-content: center;
     align-content: center;
 }
 
-.quickstart, .login, .aboutus {
+.quickstart, .login, .tutorial, .aboutus {
     margin:4px;
+}
+
+.quickstart form input {
+    background-color: #2dc0ce;
+    padding: 1em;
+    font-weight: bolder;
+}
+
+.quickstart form input:hover {
+    background-color: #139dd3;
 }
 
 .form-signin {
@@ -52,9 +68,12 @@ border-top-right-radius: 0;
 .btnlogin {
     background-color: #f3766e;
     font-family:"Comfortaa";
-    font-weight: 200;
+    color: #ffff;
+    font-weight: 300;
 }
 
 .btnlogin:hover {
-    background-color: #ec928c;
+    background-color: #f7945d;
+    color: #ffff;
+    font-weight: bolder;
 }
