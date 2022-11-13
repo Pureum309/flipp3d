@@ -73,32 +73,26 @@ app.use('/leaderboard', leaderboardRoute)
 // })
 
 app.post('/gamepage', (req, res)=>{
-    const userName = req.body.userName;
-    const score = req.body.score;
-
-    db.run(`INSERT INTO scores(user_name, score) values (?,?)`, [userName, score]);
-
-    res.redirect('/leaderboard');
-
-        // const userData = req.body
-        // console.log(userData)
-        // foundUsers = []
+   
+        const userData = req.body
+        console.log(userData)
+        foundUsers = []
         
-        // db.all("SELECT * FROM users WHERE user_name = ?", [userData.username], (err, foundUser) => {
-        //     // console.log('---');
-        //     // console.log(row); 
-        //     foundUsers.push(foundUser)
-        //     console.log('----')
-        //     console.log(foundUsers[0][0].password)
-        // });
+        db.all("SELECT * FROM users WHERE user_name = ?", [userData.username], (err, foundUser) => {
+            // console.log('---');
+            // console.log(row); 
+            foundUsers.push(foundUser)
+            console.log('----')
+            console.log(foundUsers[0][0].password)
+        });
 
-        // if(foundUsers){
-        //     if(foundUsers[0][0].password === userData.password) {
-        //         res.sendFile(GamePath)
-        //     } else {
-        //         res.send('invalid log in')
-        //     }
-        // }
+        if(foundUsers){
+            if(foundUsers[0][0].password === userData.password) {
+                res.sendFile(GamePath)
+            } else {
+                res.send('invalid log in')
+            }
+        }
 
         // if(foundUser){
         //     if(foundUser.password === userData.password){
@@ -110,6 +104,18 @@ app.post('/gamepage', (req, res)=>{
             res.end()
         // }
     })
+
+
+app.post('/leaderboard', (req, res)=>{
+    const userName = req.body.userName;
+    const score = req.body.score;
+
+    db.run(`INSERT INTO scores(user_name, score) values (?,?)`, [userName, score]);
+
+    res.redirect('/leaderboard');
+
+    res.end()
+})
 
 app.post('/signup', (req, res)=>{
     // const newuserData = req.body
