@@ -20,6 +20,10 @@ const LoginPath = __dirname + '/pages/login.html'
 const GamePath = __dirname + '/pages/game.html'
 const LeaderPath = __dirname + '/pages/leaderboard.html'
 
+//Directory to Tutorial page
+
+const TutorialPath = __dirname + '/pages/tutorial.html'
+
 //Directory to about page
 
 const AboutUsPath = __dirname + '/pages/aboutus.html'
@@ -56,6 +60,11 @@ app.get('/login', (req,res)=>{
 app.get('/quickstart', (req,res)=>{
     res.sendFile(GamePath)
 })
+
+app.get('/tutorial', (req, res) => {
+    res.sendFile(TutorialPath)
+})
+
 
 app.get('/aboutus', (req, res) => {
     res.sendFile(AboutUsPath)
