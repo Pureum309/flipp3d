@@ -218,9 +218,32 @@ padding-bottom: 2em;
 }
 
 .bg-music {
-  width:100%;
+  
+  position: fixed;
+  bottom: 0;
+  right: 0;
 }
 
 audio {
   width:100%;
+}
+
+.tutorial-vid {
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+  margin-top: 10em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* Centering y-axis */
+  align-items :center; /* Centering x-axis */
+}
+
+h1 {
+  font-family: 'Pacifico', cursive;
+  color: #ffff;
+  text-shadow: 0.1em 0.1em 0 #139dd3, 0 0 0.5em #ffff;
+  /* text-shadow: 1px 1px 0 rgba(140,140,140,0.6) , -1px -1px 1px rgba(0,0,0,0.67) ; */
 }
