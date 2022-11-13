@@ -53,7 +53,7 @@ app.get('/login', (req,res)=>{
     res.sendFile(LoginPath)
 })
 
-app.get('/gamepage', (req,res)=>{
+app.get('/quickstart', (req,res)=>{
     res.sendFile(GamePath)
 })
 
@@ -72,7 +72,7 @@ app.use('/leaderboard', leaderboardRoute)
 //     res.sendFile(LeaderPath, {test: "test text"})
 // })
 
-app.post('/gamepage', (req, res)=>{
+app.get('/gamepage', (req, res)=>{
    
         const userData = req.body
         console.log(userData)
@@ -83,16 +83,25 @@ app.post('/gamepage', (req, res)=>{
             // console.log(row); 
             foundUsers.push(foundUser)
             console.log('----')
-            console.log(foundUsers[0][0].password)
+            console.log(foundUsers.length +'+'+ userData.password)
+            if (foundUser){
+                for (i = 0; i < foundUsers.length; i++){
+                    for (j = 0; j < foundUsers[i].length; j++){
+                        if(foundUsers[i][j].password === userData.password) {
+                            console.log('++++++')
+                        }
+                    }
+                }
+            }
         });
 
-        if(foundUsers){
-            if(foundUsers[0][0].password === userData.password) {
-                res.sendFile(GamePath)
-            } else {
-                res.send('invalid log in')
-            }
-        }
+        // if(foundUsers){
+        //     if(foundUsers[0][0].password === userData.password) {
+        //         res.sendFile(GamePath)
+        //     } else {
+        //         res.send('invalid log in')
+        //     }
+        // }
 
         // if(foundUser){
         //     if(foundUser.password === userData.password){
